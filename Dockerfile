@@ -4,10 +4,10 @@ RUN yum install -y httpd \
   zip \
  unzip \
  tree
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page247/kindle.zip /var/www/html/
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page253/travel.zip /var/www/html/
 WORKDIR /var/www/html
-RUN unzip kindle.zip
-RUN cp -rvf markups-kindle/* .
-RUN rm -rf __MACOSX markups-kindle kindle.zip 
+RUN unzip travel.zip
+RUN cp -rvf free-bootstrap-theme-t-master/* .
+RUN rm -rf free-bootstrap-theme-t-master travel.zip 
 CMD ["/usr/sbin/httpd", "-D",  "FOREGROUND"]
 EXPOSE 80
