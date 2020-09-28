@@ -1,4 +1,7 @@
-node{
+pipeline {
+    agent any
+stages {
+
     stage("SMC Checkout"){
         git 'https://github.com/cloudjankari/kubernetesproject.git'
     }
@@ -27,4 +30,5 @@ node{
     sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.33.147 ${dockerRun}"
 }
     }
+}
 }
