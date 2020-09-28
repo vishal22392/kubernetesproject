@@ -1,34 +1,8 @@
-pipeline {
+pipeline{
     agent any
-stages {
-
-    stage("SMC Checkout"){
+	stages{
+	   stage("SMC Checkout"){
         git 'https://github.com/cloudjankari/kubernetesproject.git'
     }
-    stage("Docker file build"){
-        sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
-        sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:v1.$BUILD_ID'
-        sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:latest'
-    }
-    stage("Docker image push to HUB"){
-        withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerub')]) {
-    // some block
-    sh 'docker login -u sd171991 -p ${dockerub}'
-    sh 'docker image push sd171991/$JOB_NAME:v1.$BUILD_ID'
-        sh 'docker image push sd171991/$JOB_NAME:latest'
-        sh 'docker image rmi $JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:latest'
-}
-    }
-    stage("Deployment Of Docker Container from production envoronment"){
-        def dockerRun = 'docker run -p 8000:80 -d --name cloudknowledges  sd171991/cloudindia:latest'
-        def dockerrm = 'docker container rm -f cloudknowledges'
-        def dockerimagerm = 'docker image rmi  sd171991/cloudindia'
-        sshagent(['prodnv']) {
-    // some block
-    sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.33.147 ${dockerrm}"
-    sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.33.147 ${dockerimagerm}"
-    sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.33.147 ${dockerRun}"
-}
-    }
-}
-}
+	}
+	}
