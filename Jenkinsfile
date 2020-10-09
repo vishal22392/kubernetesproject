@@ -33,10 +33,13 @@ pipeline {
             steps {
              sshagent(['hostpassword']) {
     // some block
+        def dockerRun = 'docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest'
+        def dockerrm = 'docker container rm -f cloudknowledges'
+        def dockerimagerm = 'docker image rmi  sd171991/sanjudahiya'
                  
-    sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 docker container rm -f cloudknowledges"
-    sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 docker image rmi sd171991/demo-project"
-    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 docker container run -d -p 8000:80 --name cloudknowledges sd171991/demo-project:latest"
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  ${dockerrm}"
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 ${dockerimagerm}"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerRun}"
     
 }
         }
