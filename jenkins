@@ -1,8 +1,0 @@
-pipeline{
-    agent any
-	stages{
-	   stage("SMC Checkout"){
-        git 'https://github.com/cloudjankari/kubernetesproject.git'
-    }
-	}
-	}
