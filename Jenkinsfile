@@ -34,9 +34,9 @@ pipeline {
              sshagent(['hostpassword']) {
     // some block           
         
-        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 'docker container rm -f cloudknowledges'"
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 'docker image rmi  sd171991/demo-project'"
-        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  'docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest'"
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 "docker container rm -f cloudknowledges""
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 "docker image rmi  sd171991/demo-project""
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  "docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest""
     
 }
         }
