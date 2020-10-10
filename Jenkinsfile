@@ -22,9 +22,9 @@ node{
         def dockerimagerm = 'docker image rmi  sd171991/demo-project'
         sshagent(['hostpassword']) {
     // some block
-    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.15.226 ${dockerrm}"
-    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.15.226 ${dockerimagerm}"
-    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.15.226 ${dockerRun}"
+    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerrm}"
+    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerimagerm}"
+    sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerRun}"
 }
     }
 }
