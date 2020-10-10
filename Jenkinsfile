@@ -8,9 +8,9 @@ node{
        sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:latest'
     }
     stage("Docker Image Push"){
-        withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpasswordindia')]) {
+        withCredentials([string(credentialsId: 'mobilehubpassword', variable: 'mobilehubpassword')]) {
     // some block
-    sh 'docker login -u sd171991 -p ${dockerpasswordindia}'
+    sh 'docker login -u sd171991 -p ${mobilehubpassword}'
     sh 'docker image push sd171991/$JOB_NAME:v1.$BUILD_ID'
     sh 'docker image push sd171991/$JOB_NAME:latest'
     sh 'docker image rmi $JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:v1.$BUILD_ID sd171991/$JOB_NAME:latest'
@@ -20,7 +20,7 @@ node{
         def dockerRun = 'docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest'
         def dockerrm = 'docker container rm -f cloudknowledges'
         def dockerimagerm = 'docker image rmi  sd171991/demo-project'
-        sshagent(['dockerhostmachine']) {
+        sshagent(['hostpassword']) {
     // some block
     sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.15.226 ${dockerrm}"
     sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.15.226 ${dockerimagerm}"
