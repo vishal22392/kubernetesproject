@@ -2,9 +2,6 @@ pipeline {
     agent any
 
     stages {
-        def dockerRun = 'docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest'
-        def dockerrm = 'docker container rm -f cloudknowledges'
-        def dockerimagerm = 'docker image rmi  sd171991/sanjudahiya'
         stage('PUll') {
             steps {
                 git 'https://github.com/cloudjankari/kubernetesproject.git'
@@ -35,12 +32,11 @@ pipeline {
         stage("Deployment") {
             steps {
              sshagent(['hostpassword']) {
-    // some block
+    // some block           
         
-                 
-        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  ${dockerrm}"
-        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 ${dockerimagerm}"
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerRun}"
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 'docker container rm -f cloudknowledges'"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 'docker image rmi  sd171991/demo-project'"
+        sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  'docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest'"
     
 }
         }
