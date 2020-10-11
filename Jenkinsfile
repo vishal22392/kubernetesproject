@@ -4,6 +4,7 @@ pipeline {
         def dockerRun = "docker run -p 8000:80 -d --name cloudknowledges  sd171991/demo-project:latest"
         def dockerrm = "docker container rm -f cloudknowledges"
         def dockerimagerm = "docker image rmi  sd171991/demo-project"
+    }
         
 
     stages {
