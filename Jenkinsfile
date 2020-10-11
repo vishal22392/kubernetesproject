@@ -40,9 +40,9 @@ pipeline {
              sshagent(['hostpassword']) {
     // some block           
    
-                 sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 ${dockerrm}"
-                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${dockerimagerm}"
-                 sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  ${dockerRun}"
+                 sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54 ${env.dockerrm}"
+                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.42.54 ${env.dockerimagerm}"
+                 sh "ssh -o StricHostKeyChecking=no ec2-user@172.31.42.54  ${env.dockerRun}"
     
 }
         }
