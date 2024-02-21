@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: firstdeployment
-        image: amardocker27/kubernetesproject
+        image: vishal22392/kubernetesproject
         ports:
         - containerPort: 80
   strategy:
