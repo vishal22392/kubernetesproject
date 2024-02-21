@@ -1,7 +1,8 @@
 FROM centos:latest
 MAINTAINER rwdyrathod@gmail.com
 RUN apt-get update \
-    && apt-get install -y apache2 unzip\
+    && apt-get install -y apache2  \
+    && apt-get install -y  unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/beauty.zip /var/www/html/
