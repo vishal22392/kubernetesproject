@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM ubuntu:latest
 MAINTAINER rwdyrathod@gmail.com
 RUN apt-get update \
     && apt-get install -y apache2  \
